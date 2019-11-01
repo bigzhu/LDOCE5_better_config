@@ -109,6 +109,8 @@ jQuery.noConflict()(function ($) {
         });
 
         lm5pp_anchorSetup();
+        // 删除所有的 a
+        $("a").removeAttr("href");
 
         $(window).scroll(); // trigger float logo
 
