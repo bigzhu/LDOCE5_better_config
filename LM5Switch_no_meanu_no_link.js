@@ -110,7 +110,18 @@ jQuery.noConflict()(function ($) {
 
         lm5pp_anchorSetup();
         // 删除所有的 a
-        $("a").removeAttr("href");
+        //alert($("a[href*='illness']").prop("outerHTML"))
+        // dic://
+        //$("a[href^='dic://']").each(function(){
+        //  alert($(this).prop("outerHTML"))
+        //});
+        // 真正删除无意义的写死的单词跳转, 避免单击显示中文时候误触
+        $("a[class='defRef']").each(function(){
+          $(this).replaceWith($(this).text());
+        });
+        //class="defRef"
+
+        //$("a").removeAttr("href");
 
         $(window).scroll(); // trigger float logo
 
