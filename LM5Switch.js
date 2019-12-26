@@ -60,7 +60,9 @@ jQuery.noConflict()(function ($) {
 
         // pagetype=3: online page
         if (lm5pp_pagetype != 3)
-            lm5pp_switchChineseSetup();
+            // lm5pp_switchChineseSetup();
+            // 默认显示中文, 且不影响图片的显示, 也不会出现中文闪动
+	          lm5pp_showChineseAll(); 
 
         // hook tags for show/hide cross senses(phrase verbs)
         lm5pp_senseSetup();
@@ -81,8 +83,8 @@ jQuery.noConflict()(function ($) {
         lm5pp_versionSetup();
 
         // ***************** menu ********************
-        lm5pp_menuSetup();
-        lm5pp_floatmenuSetup();
+        //lm5pp_menuSetup();
+        //lm5pp_floatmenuSetup();
 
         // ***************** proncodes ***************
         lm5pp_HWDSetup();
@@ -109,6 +111,19 @@ jQuery.noConflict()(function ($) {
         });
 
         lm5pp_anchorSetup();
+        // 删除所有的 a
+        //alert($("a[href*='illness']").prop("outerHTML"))
+        // dic://
+        //$("a[href^='dic://']").each(function(){
+        //  alert($(this).prop("outerHTML"))
+        //});
+        // 真正删除无意义的写死的单词跳转, 避免单击显示中文时候误触
+        $("a[class='defRef']").each(function(){
+          $(this).replaceWith($(this).text());
+        });
+        //class="defRef"
+
+        //$("a").removeAttr("href");
 
         $(window).scroll(); // trigger float logo
 
